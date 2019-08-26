@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "details"
+  name: "weather-details"
 };
 </script>
