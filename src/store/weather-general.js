@@ -21,6 +21,17 @@ export default {
                 }
             })
             commit('SET_GENERAL_WEATHER', response.data)
+        },
+        async fetchGeneralWeatherByCoords({ commit }, coords) {
+            const response = await axios.get('http://api.openweathermap.org/data/2.5/weather', {
+                params: {
+                    lat: coords.latitude,
+                    lon: coords.longitude,
+                    appid: '0247a1854c9fc1bf26839f6ae6610f2c',
+                    units: 'metric'
+                }
+            })
+            commit('SET_GENERAL_WEATHER', response.data)
         }
 
     }

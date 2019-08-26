@@ -15,7 +15,7 @@
         {{weather.weather[0].description}}
       </div>
     </div>
-    <router-link to="/details">
+    <router-link :to="'/details/' + weather.id">
       <div class="result-more">more</div>
     </router-link>
   </div>

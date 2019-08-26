@@ -20,15 +20,17 @@ export default {
 .app {
   background-image: url("~@/assets/images/bg.jpg");
   background-size: cover;
-  min-height: 100vh;
+
   &-wrap {
-    position: fixed;
+    min-height: 100vh;
+    overflow-y: auto;
     padding: 20px;
     width: 500px;
     max-width: 95vw;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 </style>

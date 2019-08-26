@@ -15,7 +15,17 @@ export default {
   methods: {
     search() {
       this.$store.dispatch("fetchGeneralWeather", this.city);
+    },
+    getLocalization() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.$store.dispatch("fetchGeneralWeatherByCoords", position.coords);
+        });
+      }
     }
+  },
+  created() {
+    this.getLocalization();
   }
 };
 </script>

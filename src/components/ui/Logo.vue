@@ -1,10 +1,12 @@
 <template>
-  <div class="logo">
-    <div class="logo-img">
-      <img src="@/assets/images/logo.svg" />
+  <router-link to="/">
+    <div class="logo">
+      <div class="logo-img">
+        <img src="@/assets/images/logo.svg" />
+      </div>
+      <div class="logo-text">AirApp</div>
     </div>
-    <div class="logo-text">AirApp</div>
-  </div>
+  </router-link>
 </template>
 
 <script>
