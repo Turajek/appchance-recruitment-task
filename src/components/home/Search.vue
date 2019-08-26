@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <input class="search-input" v-model="city" v-on:keyup.enter="search" />
+    <input class="search-input" ref="autocomplete" v-model="city" />
     <button class="search-button" @click="search">Check</button>
   </div>
 </template>
@@ -16,6 +16,21 @@ export default {
     search() {
       this.$store.dispatch("fetchGeneralWeather", this.city);
     }
+  },
+  mounted() {
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.$refs.autocomplete,
+      { types: ["geocode"] }
+    );
+
+    this.autocomplete.addListener("place_changed", () => {
+      let place = this.autocomplete.getPlace();
+      let coords = {
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng()
+      };
+      this.$store.dispatch("fetchGeneralWeatherByCoords", coords);
+    });
   }
 };
 </script>
@@ -46,6 +61,7 @@ export default {
     }
   }
   &-button {
+    cursor: pointer;
     display: flex;
     border: 1px solid transparent;
     justify-content: center;

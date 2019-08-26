@@ -34,6 +34,7 @@ export default {
       this.$store.commit("SET_LOADER", false);
     }
   },
+
   created() {
     this.getLocalization();
   }
