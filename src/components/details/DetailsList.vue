@@ -33,7 +33,6 @@ export default {
     &-item {
       flex: 1;
       min-width: 90px;
-
       height: 50px;
       display: flex;
       justify-content: center;

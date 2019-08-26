@@ -2,15 +2,40 @@
   <div id="app" class="app">
     <div class="app-wrap">
       <Logo />
-      <router-view />
+      <transition name="fade" mode="out-in">
+        <router-view key="2" />
+      </transition>
     </div>
+    <Loader v-if="isLoading" />
+    <notifications group="foo" />
   </div>
 </template>
 <script>
 import Logo from "@/components/ui/Logo.vue";
+import Loader from "@/components/ui/Loader.vue";
 export default {
   components: {
-    Logo
+    Logo,
+    Loader
+  },
+  computed: {
+    isLoading() {
+      return this.$store.getters.isLoading;
+    }
+  },
+  methods: {
+    getLocalization() {
+      this.$store.commit("SET_LOADER", true);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.$store.dispatch("fetchGeneralWeatherByCoords", position.coords);
+        });
+      }
+      this.$store.commit("SET_LOADER", false);
+    }
+  },
+  created() {
+    this.getLocalization();
   }
 };
 </script>
